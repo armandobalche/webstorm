@@ -45,9 +45,7 @@ router.post('/customers/add/', (req, res) => {
         } else {
             console.log(err);
         }
-
     });
-
 });
 
 module.exports = router;

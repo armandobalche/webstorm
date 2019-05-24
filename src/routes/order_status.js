@@ -1,15 +1,14 @@
-
 const express = require('express');
 
 const router = express.Router();
 
 const mysqlConnection = require('../database');
-router.get('/assemblyproducts/', (req, res) => {
-    mysqlConnection.query('SELECT * FROM assembly_products;', (err, rows, fields) => {
-        if(!err){
+router.get('/orderstatus/', (req, res) => {
+    mysqlConnection.query('SELECT * FROM order_status;', (err, rows, fields) => {
+        if (!err) {
             res.json(rows);
             res.end();
-        } else{
+        } else {
             console.log(err);
         }
     });

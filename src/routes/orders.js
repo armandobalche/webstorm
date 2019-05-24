@@ -3,52 +3,33 @@ const express = require('express');
 
 const router = express.Router();
 
-
-
 const mysqlConnection = require('../database');
 
-router.get('/orders', (req, res) => {
+router.get('/orders/', (req, res) => {
     mysqlConnection.query('SELECT * FROM orders;', (err, rows, fields) => {
         if(!err){
             res.json(rows);
             res.end();
-
         } else{
             console.log(err);
         }
     });
-
 });
 
-// router.get('/:id', (req, res) => {
-//     id =req.id;
-//     mysqlConnection.query('SELECT name FROM employees where' + id ;', (err, rows, fields) => {
-//         if(!err){
-//             res.json(rows);
-//             res.end();
-//
-//         } else{
-//             console.log(err);
-//         }
-//
-//     });
-// });
-
-router.get('/orders/add', (req, res) => {
-    mysqlConnection.query('INSERT INTO employees values (null,"'+obj.name+'",'+obj.salary+');', (err, rows, fields) => {
+router.post('/orders/add', (req, res) => {
+    var id = req.body.id,
+        status_id = req.body.status_id,
+        customer_id = req.body.customer_id,
+        date = req.body.date,
+        change_log = req.body.change_log;
+    mysqlConnection.query('INSERT INTO orders values (?,?,?,?,?);',[id,status_id, customer_id, date, change_log], (err, rows, fields) => {
         if(!err){
-
             res.send();
             res.end();
-
         } else{
             console.log(err);
         }
-
     });
-
 });
-
-
 
 module.exports = router;
