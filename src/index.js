@@ -7,6 +7,9 @@ app.set('port', process.env.PORT || 3000 );
 //Middlewares
 app.use(require('./routes/employees'));
 app.use(require('./routes/products'));
+app.use(require('./routes/assemblies'));
+app.use(require('./routes/assembly_products'));
+app.use(require('./routes/customers'));
 
 //Routes
 
