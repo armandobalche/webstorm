@@ -15,6 +15,7 @@ router.get('/assemblies/', (req, res) => {
     });
 });
 
+
 // router.get('/:id', (req, res) => {
 //     id =req.id;
 //     mysqlConnection.query('SELECT name FROM employees where' + id ;', (err, rows, fields) => {
