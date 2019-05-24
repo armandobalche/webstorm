@@ -48,4 +48,15 @@ router.post('/customers/add/', (req, res) => {
     });
 });
 
+router.delete('/customers/delete:id', (req, res) => {
+    mysqlConnection.query('DELETE FROM customers WHERE id = ?;',[req.params.id], (err, rows, fields) => {
+        if(!err){
+            res.send("Borrado exitoso");
+            res.end();
+        } else{
+            console.log(err);
+        }
+    });
+});
+
 module.exports = router;

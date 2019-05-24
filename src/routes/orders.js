@@ -32,4 +32,15 @@ router.post('/orders/add', (req, res) => {
     });
 });
 
+router.delete('/orders/delete:id', (req, res) => {
+    mysqlConnection.query('DELETE FROM orders o WHERE id = ? AND status_id < 2;',[req.params.id], (err, rows, fields) => {
+        if(!err){
+            res.send("Borrado exitoso");
+            res.end();
+        } else{
+            console.log(err);
+        }
+    });
+});
+
 module.exports = router;
