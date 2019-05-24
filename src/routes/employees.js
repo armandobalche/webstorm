@@ -3,13 +3,14 @@ const express = require('express');
 
 const router = express.Router();
 
+
+
  const mysqlConnection = require('../database');
  router.get('/', (req, res) => {
-   mysqlConnection.query('SELECT * FROM employees;', (err, rows, fields) => {
+   mysqlConnection.query('SELECT * FROM products;', (err, rows, fields) => {
     if(!err){
-      res.json(rows);
-      res.end();
-
+        res.json(rows);
+        res.end();
 
     } else{
       console.log(err);
@@ -46,5 +47,7 @@ router.get('/add', (req, res) => {
 });
 
 });
+
+
 
 module.exports = router;
