@@ -31,14 +31,13 @@ router.get('/orders/', (req, res) => {
 //     });
 // });
 
-router.get('/orders/add/id=:id&status_id=:status_id&customer_id=:customer_id&date=:date&change_log=:change_log', (req, res) => {
+router.get('/orders/add/id=:id&customer_id=:customer_id&date=:date&change_log=:change_log', (req, res) => {
     var id = req.params.id,
-        status_id = req.params.status_id,
         customer_id = req.params.customer_id,
         date = req.params.date,
         change_log = req.params.change_log;
 
-    mysqlConnection.query('INSERT INTO orders values (?,?,?,?,?);',[id,status_id, customer_id, date, change_log], (err, rows, fields) => {
+    mysqlConnection.query('INSERT INTO orders values (?,0,?,?,?);',[id, customer_id, date, change_log], (err, rows, fields) => {
         if(!err){
             res.send('agregado exitosamente');
             res.end();
