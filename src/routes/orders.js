@@ -51,7 +51,7 @@ router.get('/orders/add/id=:id&customer_id=:customer_id&date=:date&change_log=:c
 
 
 router.delete('/orders/delete:id', (req, res) => {
-    mysqlConnection.query('DELETE FROM orders WHERE id =? AND status_id >2',[req.params.id], (err, rows, fields) => {
+    mysqlConnection.query('DELETE FROM orders WHERE id =?',[req.params.id], (err, rows, fields) => {
         if(!err){
             res.send("Borrado exitoso");
             res.end();
