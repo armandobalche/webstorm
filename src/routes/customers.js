@@ -29,21 +29,23 @@ router.get('/customers/', (req, res) => {
 //     });
 // });
 
-router.post('/customers/add/', (req, res) => {
-    var id = req.body.id,
-        fname = req.body.fname,
-        lname = req.body.lname,
-        address = req.body.address,
-        phone1 = req.body.phone1,
-        phone2 = req.body.phone2,
-        phone3 = req.body.phone3,
-        email = req.body.email;
-    mysqlConnection.query('INSERT INTO customers values (?,?,?,?,?,?,?,?);',[id,fname,lname,address,phone1,phone2,phone3,email] ,(err, rows, fields) => {
+router.get('/customers/add/id=:id&f_name=:fname&l_name=:lname&address=:address&tel1=:tel1&tel2=:tel2&tel3=:tel3&email=:email', (req, res) => {
+    var id = req.params.id,
+        fname = req.params.fname,
+        lname = req.params.lname,
+        address = req.params.address,
+        phone1 = req.params.tel1,
+        phone2 = req.params.tel2,
+        phone3 = req.params.tel3,
+        email = req.params.email;
+    mysqlConnection.query('INSERT INTO customers values (?,?,?,?,?,?,?,?,1);',[id,fname,lname,address,phone1,phone2,phone3,email] ,(err, rows, fields) => {
         if (!err) {
-            res.send();
+            res.send('agregado exitoso');
             res.end();
+
         } else {
             console.log(err);
+            console.log('No se pudo agregar');
         }
     });
 });
@@ -59,4 +61,15 @@ router.delete('/customers/delete:id', (req, res) => {
     });
 });
 
+
+router.get('/customers/update/id', (req, res) => {
+    mysqlConnection.query('UPDATE customer SET ? WHERE id = ?;',[req.params.id], (err, rows, fields) => {
+        if(!err){
+            res.send("Borrado exitoso");
+            res.end();
+        } else{
+            console.log(err);
+        }
+    });
+});
 module.exports = router;

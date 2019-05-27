@@ -14,4 +14,6 @@ router.get('/vendedores', (req, res) => {
     });
 });
 
+
+
 module.exports = router;
